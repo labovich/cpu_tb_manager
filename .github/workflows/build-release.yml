@@ -8,6 +8,12 @@ on:
   pull_request:
     branches: [ master, main ]
 
+permissions:
+  contents: write
+  packages: read
+  actions: read
+  security-events: write
+
 env:
   PYTHON_VERSION: '3.12'
   UV_VERSION: '0.4.10'
