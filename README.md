@@ -8,6 +8,8 @@ A simple and lightweight system tray application for managing CPU Turbo Boost se
 
 ## Overview
 
+[ ![Turbo Boost Manager](pictures/01.png)]
+
 Turbo Boost Manager provides an easy-to-use interface for controlling your CPU's turbo boost functionality directly from the Windows system tray. It allows you to quickly enable or disable turbo boost for both AC power (plugged in) and battery power scenarios without diving into complex power management settings.
 
 ## Features
