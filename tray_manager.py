@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from PIL import Image, ImageDraw
 from pystray import Menu, MenuItem, Icon
@@ -16,9 +17,20 @@ class TrayManager:
         self.logger = Logger.get_logger()
         self.icon = None
 
+    def get_resource_path(self, relative_path: str) -> Path:
+        """Get absolute path to resource, works for dev and for PyInstaller"""
+        try:
+            # PyInstaller creates a temp folder and stores path in _MEIPASS
+            base_path = sys._MEIPASS
+        except Exception:
+            # Running in normal Python environment
+            base_path = Path(__file__).parent
+
+        return Path(base_path) / relative_path
+
     def create_image(self) -> Image.Image:
         """Load tray icon image from PNG file or create fallback"""
-        icon_path = Path('img') / 'icon.png'
+        icon_path = self.get_resource_path('img/icon.png')
 
         # Try to load PNG icon
         if icon_path.exists():
