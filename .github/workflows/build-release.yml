@@ -54,11 +54,11 @@ jobs:
     - name: Verify build output
       run: |
         if (Test-Path "dist/TurboBoostManager.exe") {
-          Write-Output "✅ Build successful!"
+          Write-Output "[SUCCESS] Build successful!"
           $fileSize = (Get-Item "dist/TurboBoostManager.exe").Length
-          Write-Output "📦 File size: $([math]::Round($fileSize/1MB, 2)) MB"
+          Write-Output "[INFO] File size: $([math]::Round($fileSize/1MB, 2)) MB"
         } else {
-          Write-Error "❌ Build failed - executable not found"
+          Write-Output "[ERROR] Build failed - executable not found"
           exit 1
         }
       shell: powershell
@@ -89,7 +89,7 @@ jobs:
           VERSION="v$(date +'%Y.%m.%d')-${GITHUB_SHA:0:7}"
         fi
         echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
-        echo "📝 Version: $VERSION"
+        echo "[INFO] Version: $VERSION"
       shell: bash
 
     - name: Create Release
@@ -99,27 +99,27 @@ jobs:
         tag_name: ${{ steps.version.outputs.VERSION }}
         name: "Turbo Boost Manager ${{ steps.version.outputs.VERSION }}"
         body: |
-          ## 🚀 Turbo Boost Manager Release
+          ## Turbo Boost Manager Release
 
           ### What's New
           - Automated build from commit [`${{ github.sha }}`](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
           - Built with Python ${{ env.PYTHON_VERSION }}
           - Windows x64 executable included
 
-          ### 📥 Download
+          ### Download
           - **TurboBoostManager.exe** - Main executable (no installation required)
 
-          ### 🔧 Usage
+          ### Usage
           1. Download `TurboBoostManager.exe`
           2. Run as Administrator (required for powercfg operations)
           3. Look for the CPU icon in your system tray
           4. Right-click to configure Turbo Boost settings
 
-          ### 📋 System Requirements
+          ### System Requirements
           - Windows 10/11 (64-bit)
           - Administrator privileges
 
-          ### 🐛 Issues
+          ### Issues
           If you encounter any problems, please [open an issue](https://github.com/${{ github.repository }}/issues).
 
           ---
