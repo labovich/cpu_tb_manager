@@ -20,7 +20,12 @@ class PowerManager:
             self.logger.info(f"Setting CPU power: {max_p}% for mode {mode}")
 
             # Get active power scheme GUID
-            output = subprocess.check_output(['powercfg', '/getactivescheme'], encoding='utf-8', creationflags=subprocess.CREATE_NO_WINDOW, shell=False)
+            output = subprocess.check_output(
+                ['powercfg', '/getactivescheme'],
+                encoding='utf-8',
+                creationflags=subprocess.CREATE_NO_WINDOW,
+                shell=False
+            )
             guid = output.split(':')[1].strip().split(' ')[0]
             self.logger.debug(f"Active power scheme: {guid}")
 
