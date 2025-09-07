@@ -1,0 +1,9 @@
+[project]
+name = "cpu-tb-manager"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "pyinstaller>=6.15.0",
+    "pystray~=0.19.5",
+]
